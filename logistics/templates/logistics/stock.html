@@ -1,0 +1,32 @@
+{% extends "logistics/base.html" %}
+
+{% block content %}
+<div class="side-nav">
+    <div class="container">
+        <a class="side-btn" href="home.html">HOME</a>
+        <a class="side-btn current" href="stock.html">在庫</a>
+        <a class="side-btn" href="#staff">スタッフ</a>
+        <a class="side-btn" href="#logistics">物流</a>
+    </div>
+
+</div>
+
+<div class="main">
+    <table class="stock-table">
+        <tr>
+            <th>品名</th>
+            <th>カテゴリ</th>
+            <th>賞味期限</th>
+            <th>数量</th>
+        </tr>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.category }}</td>
+                <td>{{ stock.date }}</td>
+                <td>{{ stock.quantity }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

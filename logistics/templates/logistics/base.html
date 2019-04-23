@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>在庫 | フードバンク狭間 | 物流管理システム</title>
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-left">
+                <h1 class="title">物流管理システム</h1>
+                <h2 class="base-name">フードバンク狭間</h2>
+            </div>
+            <div class="header-right">
+                <div class="header-btn selectbase">
+                    <a href="index.html">拠点選択</a>
+                </div>
+                <div class="header-btn setting">
+                    <a href="#setting">設定</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>
