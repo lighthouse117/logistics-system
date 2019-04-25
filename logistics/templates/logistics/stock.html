@@ -1,32 +1,41 @@
 {% extends "logistics/base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>在庫 | {{ base_name }} | 物流管理システム</title>
+{% endblock %}
+
+{% block base_name %}
+    <h2 class="base-name">{{ base_name }}</h2>
+{% endblock %}
 
 {% block content %}
-<div class="side-nav">
-    <div class="container">
-        <a class="side-btn" href="/home">HOME</a>
-        <a class="side-btn current" href="/stock">在庫</a>
-        <a class="side-btn" href="#staff">スタッフ</a>
-        <a class="side-btn" href="#logistics">物流</a>
+    <div class="side-nav">
+        <div class="container">
+            <a class="side-btn" href="{% url 'home' base_name=base_name %}">HOME</a>
+            <a class="side-btn current" href="{% url 'stock' base_name=base_name %}">在庫</a>
+            <a class="side-btn" href="{% url 'staff' base_name=base_name %}">スタッフ</a>
+            <a class="side-btn" href="{% url 'distribution' base_name=base_name %}">物流</a>
+        </div>
     </div>
 
-</div>
-
-<div class="main">
-    <table class="stock-table">
-        <tr>
-            <th>品名</th>
-            <th>カテゴリ</th>
-            <th>賞味期限</th>
-            <th>数量</th>
-        </tr>
-        {% for stock in stocks %}
+    <div class="main">
+        <table class="stock-table">
+            <tr>
+                <th>品名</th>
+                <th>カテゴリ</th>
+                <th>賞味期限</th>
+                <th>数量</th>
+            </tr>
+            {% for stock in stocks %}
             <tr>
                 <td>{{ stock.name }}</td>
                 <td>{{ stock.category }}</td>
                 <td>{{ stock.date }}</td>
                 <td>{{ stock.quantity }}</td>
             </tr>
-        {% endfor %}
-    </table>
-</div>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

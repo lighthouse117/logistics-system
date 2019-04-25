@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 
@@ -20,19 +22,19 @@
             </div>
             <div class="bases">
                 <div class="base">
-                    <a href="#fb-8">
+                    <a href="{% url 'home' base_name='fb-8' %}">
                         <img class="base-icon" src="{% static 'img/fb-8.jpg' %}">
                         <p>フードバンク八王子</p>
                     </a>
                 </div>
                 <div class="base">
-                    <a href="home.html">
+                    <a href="{% url 'home' base_name='fb-hazama' %}">
                         <img class="base-icon" src="{% static 'img/fb-hazama.jpg' %}">
                         <p>フードバンク狭間</p>
                     </a>
                 </div>
                 <div class="base">
-                    <a href="#fb-tnct">
+                    <a href="{% url 'home' base_name='fb-tnct' %}">
                         <img class="base-icon" src="{% static 'img/fb-tnct.jpg' %}">
                         <p>フードバンク東京高専</p>
                     </a>

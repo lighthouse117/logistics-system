@@ -13,9 +13,9 @@
 {% block content %}
     <div class="side-nav">
         <div class="container">
-            <a class="side-btn current" href="{% url 'home' base_name=base_name %}">HOME</a>
+            <a class="side-btn" href="{% url 'home' base_name=base_name %}">HOME</a>
             <a class="side-btn" href="{% url 'stock' base_name=base_name %}">在庫</a>
-            <a class="side-btn" href="{% url 'staff' base_name=base_name %}">スタッフ</a>
+            <a class="side-btn current" href="{% url 'staff' base_name=base_name %}">スタッフ</a>
             <a class="side-btn" href="{% url 'distribution' base_name=base_name %}">物流</a>
         </div>
     </div>
