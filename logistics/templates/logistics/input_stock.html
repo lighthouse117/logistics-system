@@ -1,0 +1,30 @@
+{% extends "logistics/base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>在庫入力 | {{ base_name }} | 物流管理システム</title>
+{% endblock %}
+
+{% block content %}
+    <div class="side-nav">
+        <div class="container">
+            <a class="side-btn" href="{% url 'home' base_name=base_name %}">HOME</a>
+            <a class="side-btn current" href="{% url 'stock' base_name=base_name %}">在庫</a>
+            <a class="side-btn" href="{% url 'staff' base_name=base_name %}">スタッフ</a>
+            <a class="side-btn" href="{% url 'distribution' base_name=base_name %}">物流</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <h1 class="main-title">在庫入力</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table class="input-table">
+                {{ form.as_table }}
+            </table>
+            <button type="submit" class="header-btn">確定</button>
+        </form>
+        
+    </div>
+{% endblock %}

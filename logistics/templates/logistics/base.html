@@ -12,17 +12,11 @@
         <div class="container">
             <div class="header-left">
                 <h1 class="title">物流管理システム</h1>
-                {% block base_name %}
-                {% endblock %}
+                <h2 class="base-name">{{ base_name }}</h2>
             </div>
             <div class="header-right">
-                <div class="header-btn selectbase">
-                    <a href="{% url 'select_base' %}">拠点選択</a>
-                </div>
-                <div class="header-btn setting">
-                    <a href="#setting">設定</a>
-                </div>
-
+                    <a class="btn selectbase-btn header-btn" href="{% url 'select_base' %}">拠点選択</a>
+                    <a class="btn setting-btn header-btn" href="#setting">設定</a>
             </div>
         </div>
     </header>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/earlyaccess/notosansjapanese.css');
+/*@import url('https://fonts.googleapis.com/earlyaccess/notosansjapanese.css');*/
 * {
     margin: 0px;
     padding: 0px;
@@ -7,7 +7,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Noto Sans Japanese";
+    font-family: "serif";
     background-color: #f7f7f7;
 }
 
