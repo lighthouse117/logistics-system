@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,13 @@
 <body>
     <header>
         <div class="container">
-            <h1 class="title">物流管理システム</h1>
+            <div class="title-wrapper">
+                <a class="title" href="{% url 'index' %}">物流管理システム</a>
+            </div>
+            <div class="header-right">
+                <a class="btn logout-btn header-btn" href="{% url 'logout' %}">ログアウト</a>
+                <a class="btn setting-btn header-btn" href="#setting">設定</a>
+            </div>
         </div>
     </header>
     <div class="select-wrapper">
@@ -21,24 +27,14 @@
                 <h2>拠点を選択してください</h2>
             </div>
             <div class="bases">
-                <div class="base">
-                    <a href="{% url 'home' base_name='fb-8' %}">
-                        <img class="base-icon" src="{% static 'img/fb-8.jpg' %}">
-                        <p>フードバンク八王子</p>
-                    </a>
-                </div>
-                <div class="base">
-                    <a href="{% url 'home' base_name='fb-hazama' %}">
-                        <img class="base-icon" src="{% static 'img/fb-hazama.jpg' %}">
-                        <p>フードバンク狭間</p>
-                    </a>
-                </div>
-                <div class="base">
-                    <a href="{% url 'home' base_name='fb-tnct' %}">
-                        <img class="base-icon" src="{% static 'img/fb-tnct.jpg' %}">
-                        <p>フードバンク東京高専</p>
-                    </a>
-                </div>
+                {% for base in bases %}
+                    <div class="base">
+                        <a href="{% url 'home' base_name=base.name_en %}">
+                            <img src="{{ base.image.url }}" class="base-icon" >
+                            <p>{{ base.name_ja }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

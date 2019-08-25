@@ -9,6 +9,7 @@ body {
     padding: 0;
     font-family: "serif";
     background-color: #f7f7f7;
+    text-align: center;
 }
 
 a {
@@ -23,10 +24,46 @@ header {
     background-color: #505050;
 }
 
+.header-right {
+    float: right;
+    margin-right: 20px;
+}
+
+.header-btn {
+    margin: 30px 10px 10px 20px;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    color: white;
+    background-color: #909090;
+    border-radius: 6px;
+    height: 40px;
+    width: 120px;
+    line-height: 40px;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #B0B0B0;
+    transition: all 0.5s;
+}
+
+.title-wrapper {
+    position: absolute;
+    width: 500px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 20px;
+    z-index: auto;
+}
+
 .title {
-    line-height: 100px;
     color: white;
     font-size: 36px;
+    font-weight: bold;
 }
 
 .container {
@@ -52,10 +89,16 @@ header {
     margin: 0 80px;
     text-align: center;
     display: inline-block;
+    margin-bottom: 70px;
 }
 
 .base p {
     padding-top: 20px;
     font-size: 24px;
     color: black;
+}
+
+.bases {
+    white-space: nowrap;
+    overflow-x: scroll;
 }

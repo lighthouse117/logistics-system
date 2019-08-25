@@ -1,22 +1,22 @@
 {% extends "logistics/base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>物流 | {{ base_name }} | 物流管理システム</title>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<title>物流 | {{ base.name_ja }} | 物流管理システム</title>
 {% endblock %}
 
 {% block content %}
-    <div class="side-nav">
-        <div class="container">
-            <a class="side-btn" href="{% url 'home' base_name=base_name %}">HOME</a>
-            <a class="side-btn" href="{% url 'stock' base_name=base_name %}">在庫</a>
-            <a class="side-btn" href="{% url 'staff' base_name=base_name %}">スタッフ</a>
-            <a class="side-btn current" href="{% url 'distribution' base_name=base_name %}">物流</a>
-        </div>
+<div class="side-nav">
+    <div class="container">
+        <a class="side-btn" href="{% url 'home' base_name=base.name_en %}">HOME</a>
+        <a class="side-btn" href="{% url 'stock' base_name=base.name_en %}">在庫</a>
+        <a class="side-btn" href="{% url 'staff' base_name=base.name_en %}">スタッフ</a>
+        <a class="side-btn current" href="{% url 'distribution' base_name=base.name_en %}">物流</a>
     </div>
+</div>
 
-    <div class="main">
-        <p>メインコンテンツ</p>
-    </div>
+<div class="main">
+    <p>メインコンテンツ</p>
+</div>
 {% endblock %}

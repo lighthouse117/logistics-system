@@ -1,18 +1,18 @@
 {% extends "logistics/base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
-<title>在庫 | {{ base_name }} | 物流管理システム</title>
+<title>在庫 | {{ base.name_ja }} | 物流管理システム</title>
 {% endblock %}
 
 {% block content %}
 <div class="side-nav">
     <div class="container">
-        <a class="side-btn" href="{% url 'home' base_name=base_name %}">HOME</a>
-        <a class="side-btn current" href="{% url 'stock' base_name=base_name %}">在庫</a>
-        <a class="side-btn" href="{% url 'staff' base_name=base_name %}">スタッフ</a>
-        <a class="side-btn" href="{% url 'distribution' base_name=base_name %}">物流</a>
+        <a class="side-btn" href="{% url 'home' base_name=base.name_en %}">HOME</a>
+        <a class="side-btn current" href="{% url 'stock' base_name=base.name_en %}">在庫</a>
+        <a class="side-btn" href="{% url 'staff' base_name=base.name_en %}">スタッフ</a>
+        <a class="side-btn" href="{% url 'distribution' base_name=base.name_en %}">物流</a>
     </div>
 </div>
 
@@ -31,8 +31,8 @@
             <tbody>
                 {% for stock in stocks %}
                 <tr>
-                    <td>{{ stock.name }}</td>
-                    <td>{{ stock.category }}</td>
+                    <td>{{ stock.food.name }}</td>
+                    <td>{{ stock.food.category }}</td>
                     <td>{{ stock.date }}</td>
                     <td>{{ stock.quantity }}</td>
                 </tr>
@@ -40,6 +40,6 @@
             </tbody>
         </table>
     </div>
-    <a class="btn input-stock-btn" href="{% url 'input_stock' base_name=base_name %}">在庫入力</a>
+    <a class="btn input-stock-btn" href="{% url 'input_stock' base_name=base.name_en %}">在庫入力</a>
 </div>
 {% endblock %}

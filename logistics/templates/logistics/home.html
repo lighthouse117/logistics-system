@@ -1,61 +1,21 @@
 {% extends "logistics/base.html" %}
-{% load staticfiles %}
+{% load static %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
-<title>HOME | {{ base_name }} | 物流管理システム</title>
+<title>HOME | {{ base.name_ja }} | 物流管理システム</title>
 {% endblock %}
 
 {% block content %}
 <div class="side-nav">
     <div class="container">
-        <a class="side-btn current" href="{% url 'home' base_name=base_name %}">HOME</a>
-        <a class="side-btn" href="{% url 'stock' base_name=base_name %}">在庫</a>
-        <a class="side-btn" href="{% url 'staff' base_name=base_name %}">スタッフ</a>
-        <a class="side-btn" href="{% url 'distribution' base_name=base_name %}">物流</a>
+        <a class="side-btn current" href="{% url 'home' base_name=base.name_en %}">HOME</a>
+        <a class="side-btn" href="{% url 'stock' base_name=base.name_en %}">在庫</a>
+        <a class="side-btn" href="{% url 'staff' base_name=base.name_en %}">スタッフ</a>
+        <a class="side-btn" href="{% url 'distribution' base_name=base.name_en %}">物流</a>
     </div>
 </div>
 
 <div class="main">
     <p>メインコンテンツa</p>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
-    <div class="chart-container" style="height: 1000px; width: 1000px;">
-        <canvas id="myChart" width="600px" height="600px"></canvas>
-        <script>
-            var ctx = document.getElementById("myChart").getContext('2d');
-            var myChart = new Chart(ctx, {
-            type: "horizontalBar",
-            data:{
-                labels:["A", "B"],
-                datasets:[{
-                    data:[moment("2019-05-27"), moment().add(1, "days")],
-                    backgroundColor: "rgba(225,0,0,0.3)"
-                }]
-            },
-            options:{
-                scales:{
-                    xAxes:[{
-                        type: "time",
-                        time: {
-                            unit: "minute",
-                            round: "minute",
-                            displayFormats: {
-                                day: "h:mm"
-                            },
-                            bounds: "data",
-                            source: "auto",
-                            min: moment("2019-05-26")
-                        },
-                        stacked: false
-                    }],
-                    yAxes:[{
-                        stacked: false
-                    }]
-                }
-            }
-            });
-        </script>
-    </div>
     {% endblock %}
