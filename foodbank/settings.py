@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'lighthouse117.pythonanywhere.com',
+    '.pythonanywhere.com',
     'localhost',
 ]
 
