@@ -26,7 +26,7 @@ SECRET_KEY = 'dqbaya@bbrg_kx8g0$l%-=os)y=hd-xxumhfutnbd*&1+^96^u'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'lighthouse117.pythonanywhere.com',
+    'lighthouse0117.pythonanywhere.com',
     '.pythonanywhere.com',
     'localhost',
 ]
