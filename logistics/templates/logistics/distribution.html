@@ -1,6 +1,10 @@
 {% extends "logistics/base.html" %}
 {% load static %}
 
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 <title>物流 | {{ base.name_ja }} | 物流管理システム</title>

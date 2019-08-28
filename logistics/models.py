@@ -47,8 +47,24 @@ class Staff(models.Model):
     # 名前
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 
 # 物流
 class Distribution(models.Model):
     # 品名
     name = models.ManyToManyField(Stock)
+    #配送元
+    ship_from = models.CharField(max_length=100)
+    #配送先
+    ship_to = models.CharField(max_length=100)
+    # 品名
+    name = models.CharField(max_length=100)
+    # 数量
+    quantity = models.IntegerField()
+    #担当者
+    staff = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name

@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'lighthouse117.pythonanywhere.com',
+    'localhost',
 ]
 
 
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'logistics',
+    'widget_tweaks',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
