@@ -9,7 +9,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "serif";
+    font-family: "meiryo";
     background-color: #f7f7f7;
 }
 
@@ -198,5 +198,10 @@ header {
     font-weight: bold;
 }
 
-.header-btn {}
+.staff-timeline {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 

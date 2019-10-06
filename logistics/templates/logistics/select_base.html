@@ -10,6 +10,7 @@
 <head>
     <meta charset="utf-8">
     <title>拠点選択 | 物流管理システム</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/select-base.css' %}">
 </head>
 
@@ -17,29 +18,27 @@
     <header>
         <div class="container">
             <div class="title-wrapper">
-                <a class="title" href="{% url 'index' %}">物流管理システム</a>
+                <a class="system-title1" href="{% url 'index' %}">物流管理システム</a>
             </div>
             <div class="header-right">
-                <a class="btn logout-btn header-btn" href="{% url 'logout' %}">ログアウト</a>
-                <a class="btn setting-btn header-btn" href="#setting">設定</a>
+                <a class="btn logout-btn header-btn btn-secondary" href="{% url 'logout' %}">ログアウト</a>
+                <a class="btn setting-btn header-btn btn-secondary" href="#setting">設定</a>
             </div>
         </div>
     </header>
     <div class="select-wrapper">
-        <div class="container">
-            <div class="heading">
-                <h2>拠点を選択してください</h2>
+        <div class="heading">
+            <h2>拠点を選択してください</h2>
+        </div>
+        <div class="bases">
+            {% for base in bases %}
+            <div class="base">
+                <a href="{% url 'home' base_name=base.name_en %}">
+                    <img src="{{ base.image.url }}" class="base-icon">
+                    <p>{{ base.name_ja }}</p>
+                </a>
             </div>
-            <div class="bases">
-                {% for base in bases %}
-                    <div class="base">
-                        <a href="{% url 'home' base_name=base.name_en %}">
-                            <img src="{{ base.image.url }}" class="base-icon" >
-                            <p>{{ base.name_ja }}</p>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
 </body>

@@ -8,6 +8,77 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 <title>スタッフ | {{ base.name_ja }} | 物流管理システム</title>
+
+<!-- // Google Chartsライブラリのロード -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    // タイムラインパッケージのロード
+    google.charts.load('current', { 'packages': ['timeline'] });
+
+    // コールバック関数の設定
+    google.charts.setOnLoadCallback(drawChart);
+    
+    // グラフ作成用のコールバック関数
+    function drawChart() {
+
+        // データの作成
+        var data = new google.visualization.DataTable();
+        data.addColumn({ type: 'string', id: 'Name' });
+        data.addColumn({ type: 'string', id: 'Task' });
+        data.addColumn({ type: 'date', id: 'Start' });
+        data.addColumn({ type: 'date', id: 'End' });
+
+        {% for schedule in schedules %}
+            data.addRows([[
+                    "{{ schedule.staff.name }}", 
+                    "{{ schedule.task }}", 
+                    new Date("{{ schedule.start|date:"0-1-1 G:i" }}"), 
+                    new Date("{{ schedule.end|date:"0-1-1 G:i" }}"), 
+            ]]);
+        {% endfor %}
+
+        // グラフのオプションを設定
+        var options = {
+            height: 550,
+            hAxis: {    
+                minValue: new Date("0-1-1 08:00"),    // 時間軸の最小値
+                maxValue: new Date("0-1-1 18:00"),    // 時間軸の最大値
+            },
+            timeline: {
+                colorByRowLabel: true,  // 行ごとに色を変える
+                rowLabelStyle: { fontName: 'Meiryo', fontSize: 22, bold: true },    // 行ラベルのスタイル
+                barLabelStyle: { fontName: 'Meiryo', fontSize: 20 },                // グラフラベルのスタイル
+            },
+            backgroundColor: '#F5FCFF', // 背景色
+        };
+
+        // 指定されたhtmlの要素にグラフを作成
+        var container = document.getElementById('timeline');
+        var chart = new google.visualization.Timeline(container);
+
+        // readyイベント後に実行する関数
+        // google.visualization.events.addListener(chart, 'ready', function () {
+        //     var labels = container.getElementsByTagName('text');
+        //     Array.prototype.forEach.call(labels, function (label) {
+        //         // 時間軸のフォントサイズ
+        //         // label.setAttribute('font-size', 20);
+        //     });
+        //     var g = document.getElementsByTagName("svg")[0].getElementsByTagName("g")[1];
+        //     document.getElementsByTagName("svg")[0].parentNode.style.top = '40px';
+        //     document.getElementsByTagName("svg")[0].style.overflow = 'visible';
+        //     var height = Number(g.getElementsByTagName("text")[0].getAttribute('y')) + 15;
+        //     g.setAttribute('transform', 'translate(0,-' + height + ')');
+        //     g = null;
+        // });
+
+        
+
+        // グラフを描画
+        chart.draw(data, options);
+    }
+</script>
+
 {% endblock %}
 
 {% block content %}
@@ -19,39 +90,10 @@
         <a class="side-btn" href="{% url 'distribution' base_name=base.name_en %}">物流</a>
     </div>
 </div>
+
 <div class="main">
-    <p>スタッフメインコンテンツ</p>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ja.js"></script>
-    <div class="chart-container" style="height: 1000px; width: 1000px;">
-        <canvas id="myChart" width="600px" height="600px"></canvas>
-        <script>
-            var ctx = document.getElementById("myChart").getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: ["A", "B", "C"],
-                    datasets: [{
-                        data: [4, 5, 9],
-                        backgroundColor: "red"
-                    },
-                    {
-                        data: [0.4, 0.5, 0.9],
-                        backgroundColor: "orange"
-                    }]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            stacked: true
-                        }],
-                        yAxes: [{
-                            stacked: true
-                        }]
-                    }
-                }
-            });
-        </script>
-    </div>
+    <h1 class="main-title">スタッフスケジュール</h1>
+    <div id="timeline" class="staff-timeline"></div>
+    <a class="btn input-btn" href="{% url 'input_staffschedule' base_name=base.name_en %}">予定入力</a>
 </div>
 {% endblock %}

@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http.response import HttpResponse
-from .models import Stock, Base,Distribution
-from .forms import StockForm
-from .forms import DistributionForm
+from .models import Stock, Base, Distribution, Staff, StaffSchedule
+from .forms import StockForm, DistributionForm, StaffScheduleForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -64,11 +63,6 @@ def input_stock(request, base_name):
         form = StockForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
-            stocks = Stock.objects.all()
-            context = {
-                'base': base,
-                'stocks': stocks,
-            }
         return redirect('stock', base_name=base_name)
     else:
         form = StockForm()
@@ -80,11 +74,31 @@ def input_stock(request, base_name):
 
 @login_required
 def staff(request, base_name):
+    schedules = StaffSchedule.objects.filter(staff__base__name_en=base_name)
+    staffs = Staff.objects.filter(base__name_en=base_name)
     base = get_object_or_404(Base, name_en=base_name)
     context = {
         'base': base,
+        'staffs': staffs,
+        'schedules': schedules,
     }
     return render(request, 'logistics/staff.html', context)
+
+@login_required
+def input_staffschedule(request, base_name):
+    base = get_object_or_404(Base, name_en=base_name)
+    if request.method == "POST":
+        form = StaffScheduleForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+        return redirect('stock', base_name=base_name)
+    else:
+        form = StaffScheduleForm()
+        context = {
+            'base': base,
+            'form': form,
+        }
+    return render(request, 'logistics/input_staffschedule.html', context)
 
 @login_required
 def distribution(request, base_name):
@@ -104,11 +118,6 @@ def input_distribution(request, base_name):
         form = DistributionForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
-            dists = Distribution.objects.all()
-            context = {
-                'base': base,
-                'dists': dists,
-            }
         return redirect('distribution', base_name=base_name)
     else:
         form = DistributionForm()

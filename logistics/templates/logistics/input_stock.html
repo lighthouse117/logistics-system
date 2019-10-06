@@ -5,7 +5,6 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 
-
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 <title>在庫入力 | {{ base.name_ja }} | 物流管理システム</title>
@@ -28,7 +27,6 @@
         <table class="input-table">
         {{ form.as_table }}
         </table>
-
         <button type="submit" class="btn">確定</button>
     </form>
 
