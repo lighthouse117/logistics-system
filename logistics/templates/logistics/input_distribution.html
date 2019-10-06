@@ -5,7 +5,6 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 
-
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 <title>在庫入力 | {{ base.name_ja }} | 物流管理システム</title>
@@ -15,20 +14,19 @@
 <div class="side-nav">
     <div class="container">
         <a class="side-btn" href="{% url 'home' base_name=base.name_en %}">HOME</a>
-        <a class="side-btn current" href="{% url 'stock' base_name=base.name_en %}">在庫</a>
+        <a class="side-btn" href="{% url 'stock' base_name=base.name_en %}">在庫</a>
         <a class="side-btn" href="{% url 'staff' base_name=base.name_en %}">スタッフ</a>
-        <a class="side-btn" href="{% url 'distribution' base_name=base.name_en %}">物流</a>
+        <a class="side-btn current" href="{% url 'distribution' base_name=base.name_en %}">物流</a>
     </div>
 </div>
 
 <div class="main">
-    <h1 class="main-title">在庫入力</h1>
+    <h1 class="main-title">物流入力</h1>
     <form method="POST">
-        {% csrf_token %}   
+        {% csrf_token %}
         <table class="input-table">
         {{ form.as_table }}
         </table>
-
         <button type="submit" class="btn">確定</button>
     </form>
 

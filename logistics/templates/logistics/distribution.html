@@ -21,6 +21,31 @@
 </div>
 
 <div class="main">
-    <p>メインコンテンツ</p>
+    <h1 class="main-title">配送予定</h1>
+    <div class="table-wrapper">
+        <table class="distribution-table">
+            <thead>
+                <tr>
+                    <th>配送元</th>
+                    <th>配送先</th>
+                    <th>品名</th>
+                    <th>数量</th>
+                    <th>担当者</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dist in dists %}
+                <tr>
+                    <td>{{ dist.ship_from }}</td>
+                    <td>{{ dist.ship_to}}</td>
+                    <td>{{ dist.name }}</td>
+                    <td>{{ dist.quantity }}</td>
+                    <td>{{ dist.staff }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a class="btn input-btn" href="{% url 'input_distribution' base_name=base.name_en %}">配送入力</a>
 </div>
 {% endblock %}

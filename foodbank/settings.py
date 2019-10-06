@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     'lighthouse0117.pythonanywhere.com',
     '.pythonanywhere.com',
     'localhost',
+    '*',
 ]
 
 

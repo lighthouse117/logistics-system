@@ -19,9 +19,9 @@ class Base(models.Model):
 # 食品
 class Food(models.Model):
     # 品名
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, verbose_name='品名')
     # カテゴリ
-    category = models.CharField(max_length=100)
+    category = models.CharField(max_length=100, verbose_name='カテゴリー')
 
     def __str__(self):
         return self.name
@@ -30,16 +30,16 @@ class Food(models.Model):
 # 在庫
 class Stock(models.Model):
     # 食品
-    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    food = models.ForeignKey(Food, on_delete=models.CASCADE, verbose_name='品名')
     # 賞味期限
-    date = models.DateField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True, verbose_name='賞味期限')
     # 数量
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(verbose_name='数量')
     # 拠点
-    base = models.ForeignKey(Base, on_delete=models.SET_NULL, null=True)
+    base = models.ForeignKey(Base, on_delete=models.SET_NULL, null=True, verbose_name='拠点')
 
     def __str__(self):
-        return self.food__name
+        return self.food.name
 
 
 # スタッフ
@@ -54,17 +54,17 @@ class Staff(models.Model):
 # 物流
 class Distribution(models.Model):
     # 品名
-    name = models.ManyToManyField(Stock)
+    name = models.ManyToManyField(Stock, verbose_name='品名')
     #配送元
-    ship_from = models.CharField(max_length=100)
+    ship_from = models.CharField(max_length=100, verbose_name='配送元')
     #配送先
-    ship_to = models.CharField(max_length=100)
+    ship_to = models.CharField(max_length=100, verbose_name='配送先')
     # 品名
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, verbose_name='品名')
     # 数量
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(verbose_name='数量')
     #担当者
-    staff = models.CharField(max_length=100)
+    staff = models.CharField(max_length=100, verbose_name='担当者')
 
     def __str__(self):
         return self.name

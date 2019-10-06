@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from .import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     path('<slug:base_name>/stock/input_stock', views.input_stock, name='input_stock'),    
     path('<slug:base_name>/staff/', views.staff, name='staff'),
     path('<slug:base_name>/distribution/', views.distribution, name='distribution'),
+    path('<slug:base_name>/distribution/input_distribution', views.input_distribution, name='input_distribution')
 ]
